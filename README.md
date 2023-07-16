@@ -8,3 +8,13 @@
 
 https://reisuta.com/vue3-init/
 
+## 環境構築手順
+
+### 1. お手本をCloneする
+
+作業用フォルダ: ~/source/
+
+```bash
+$ cd ~/source #プロジェクトフォルダを置く基点となるフォルダに移動する
+
+```
