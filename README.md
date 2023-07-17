@@ -33,7 +33,7 @@ $ code .
 
 ### 2.クローン（複製）したプロジェクトを修正する
 
-#### (1)frontディレクトリを削除する
+#### （１）frontディレクトリを削除する
 
 ```bash
 # プロジェクトルートに移動(していることを確認)
@@ -44,3 +44,42 @@ $ rm -rf front
 ```
 
 注1: これは、bashの実行例。ターミナルがPowerShellの場合はエラーが吐き出されるので、単に`rm front`とする
+
+#### （２）docker-compose.ymlを修正する
+
+お手本ではNuxt.js用に作られているので、これをVue3用に修正する。  
+※Nuxt3はまだ不安定なので、安定するのを待つ  
+
+```yml
+# ----------------------------
+# 【修正後のdocker-compose.yml】
+#-----------------------------
+version: '3.9'
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./api/tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+  front:
+    build: .
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "5173:5173"
+  api:
+    build: ./api
+    command: bash -c "rm -f api/tmp/pids/server.pid && bundle exec rails s -p 4000 -b '0.0.0.0'"
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./api:/myapp
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+```
+
+
