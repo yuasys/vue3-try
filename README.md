@@ -81,5 +81,3 @@ services:
     depends_on:
       - db
 ```
-
-
