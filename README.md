@@ -30,3 +30,17 @@ $ mv sigh vue3-try
 $ cd vue3-try
 $ code .
 ```
+
+### 2.クローン（複製）したプロジェクトを修正する
+
+#### (1)frontディレクトリを削除する
+
+```bash
+# プロジェクトルートに移動(していることを確認)
+$ cd ~/source/vue3-try
+
+ # frontディレクトリを全削除(注1)
+$ rm -rf front 
+```
+
+注1: これは、bashの実行例。ターミナルがPowerShellの場合はエラーが吐き出されるので、単に`rm front`とする
