@@ -81,3 +81,15 @@ services:
     depends_on:
       - db
 ```
+
+#### （３）Dockerfileを作成する
+
+プロジェクトルート（ここでは`~/source/vue3-try`）に下記のDockerfileを作成して配置します。
+
+```dockerfile
+FROM node:18-slim
+
+WORKDIR /app
+
+RUN apt-get update
+```
